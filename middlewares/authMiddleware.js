@@ -10,13 +10,20 @@ module.exports = catchAsync(async (req, res, next) => {
     return next(new AppError("No token provided", 401));
   }
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  const user = await User.findById(decoded.id);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
 
-  if (!user) {
-    return next(new AppError("User not found", 401));
+    if (!user) {
+      return next(new AppError("User not found", 401));
+    }
+
+    req.user = user;
+    next();
+  } catch (err) {
+    if (err.name === "JsonWebTokenError" || err.name === "TokenExpiredError") {
+      return next(new AppError("Invalid or expired token", 401));
+    }
+    next(err);
   }
-
-  req.user = user;
-  next();
 });

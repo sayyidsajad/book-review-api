@@ -1,9 +1,15 @@
 module.exports = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
 
-  res.status(statusCode).json({
+  const response = {
     success: false,
     message: err.message || "Internal Server Error",
-    error: process.env.NODE_ENV === "production" ? undefined : err.stack,
-  });
+  };
+
+  // Include error stack only in non-production (development) environment
+  if (process.env.NODE_ENV !== "production") {
+    response.error = err.stack;
+  }
+
+  res.status(statusCode).json(response);
 };
