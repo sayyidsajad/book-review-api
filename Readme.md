@@ -40,11 +40,13 @@ npm install
 
 ### 3. Create a `.env` file
 
+Create a `.env` file in the root directory and add the following:
+
 ```env
 PORT=3000
-MONGO_URI=mongodb://localhost:27017/book-review-db
+MONGODB_URI=mongodb://localhost:27017/book_review_db
 JWT_SECRET=your_jwt_secret_key
-```
+NODE_ENV=development
 
 ### 4. Run the app
 
