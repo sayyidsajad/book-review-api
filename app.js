@@ -6,7 +6,7 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const errorHandler = require("./middlewares/errorHandler");
 
 app.use(express.json());
-app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 app.use("/books", bookRoutes);
 app.use("/reviews", reviewRoutes);
 app.get("/search", require("./controllers/bookController").searchBooks);
