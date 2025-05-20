@@ -1,6 +1,6 @@
-# 🗄️ Database Schema
+# Database Schema
 
-This project uses **MongoDB** with three main collections: `User`, `Book`, and `Review`.
+This project uses **MongoDB** with three main collections: `User`, `Book` and `Review`.
 
 ---
 
