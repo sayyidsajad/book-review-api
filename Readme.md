@@ -1,6 +1,6 @@
 # Book Review API
 
-A RESTful API for managing users, books, and reviews. Built with Node.js, Express, MongoDB, and JWT authentication. Designed using clean architecture and production-level patterns.
+A RESTful API for managing users, books and reviews. Built with Node.js, Express, MongoDB and JWT authentication. Designed using clean architecture and production-level patterns.
 
 ---
 
@@ -28,7 +28,7 @@ A RESTful API for managing users, books, and reviews. Built with Node.js, Expres
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/book-review-api.git
+git clone https://github.com/sayyidsajad/book-review-api.git
 cd book-review-api
 ```
 
