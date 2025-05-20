@@ -1,3 +1,5 @@
+// Custom application error class to standardize operational errors
+
 class AppError extends Error {
   constructor(message, statusCode) {
     super(message);

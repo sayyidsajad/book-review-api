@@ -59,6 +59,22 @@ The server will run on `http://localhost:3000`
 
 ---
 
+### 5. Running the Project
+
+#### ➤ In development mode (with auto-restart on file changes):
+
+```bash
+npm run dev
+```
+
+#### ➤ In production mode:
+
+```bash
+npm run start
+```
+
+---
+
 ## Authentication Endpoints
 
 | Method | Endpoint     | Description         |
