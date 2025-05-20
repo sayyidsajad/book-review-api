@@ -1,64 +1,151 @@
-# Database Schema
+# Book Review API
 
-This project uses **MongoDB** with three main collections: `User`, `Book` and `Review`.
+A RESTful API for managing users, books, and reviews. Built with Node.js, Express, MongoDB, and JWT authentication. Designed using clean architecture and production-level patterns.
 
 ---
 
-## 1. User
+## Features
+
+- User signup/login with JWT authentication
+- Add, view, search, and filter books
+- Submit one review per user per book
+- Secure routes and input validation
+- Centralized error handling and consistent API response format
+- Modular folder structure with service/controller separation
+- Helmet and rate limiting for security
+
+---
+
+## Tech Stack
+
+- Node.js with Express.js
+- MongoDB + Mongoose
+- JWT for Authentication
+- Helmet + Rate Limiting for security
+- dotenv for environment config
+
+---
+
+## Project Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/book-review-api.git
+cd book-review-api
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Create a `.env` file
+
+```env
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/book-review-db
+JWT_SECRET=your_jwt_secret_key
+```
+
+### 4. Run the app
+
+```bash
+npm start
+```
+
+The server will run on `http://localhost:3000`
+
+---
+
+## Authentication Endpoints
+
+| Method | Endpoint     | Description         |
+|--------|--------------|---------------------|
+| POST   | `/signup`    | Register a user     |
+| POST   | `/login`     | Login and get token |
+
+---
+
+## Book Endpoints
+
+| Method | Endpoint           | Description                          |
+|--------|--------------------|--------------------------------------|
+| POST   | `/books`           | Add new book (requires auth)         |
+| GET    | `/books`           | List all books with optional filters |
+| GET    | `/books/search`    | Search books by title or author      |
+| GET    | `/books/:id`       | Get book details and reviews         |
+| POST   | `/books/:id/reviews` | Add review (requires auth)        |
+
+---
+
+## Review Endpoints
+
+| Method | Endpoint           | Description                       |
+|--------|--------------------|-----------------------------------|
+| PUT    | `/reviews/:id`     | Update own review (requires auth) |
+| DELETE | `/reviews/:id`     | Delete own review (requires auth) |
+
+---
+
+## Database Schema
+
+### 1. User
 
 | Field     | Type     | Description                |
-| --------- | -------- | -------------------------- |
-| \_id      | ObjectId | Unique identifier          |
+|-----------|----------|----------------------------|
+| _id       | ObjectId | Unique identifier          |
 | username  | String   | User's display name        |
 | email     | String   | Unique email address       |
 | password  | String   | Hashed password            |
-| createdAt | Date     | Timestamp of user creation |
-| updatedAt | Date     | Timestamp of last update   |
+| createdAt | Date     | User creation time         |
+| updatedAt | Date     | Last update time           |
 
-**Constraints:**
+**Constraints:** unique email, hashed password, timestamps enabled
 
-- `email` is unique and required
-- Password is stored hashed (bcrypt)
-
----
-
-## 2. Book
+### 2. Book
 
 | Field       | Type     | Description                   |
-| ----------- | -------- | ----------------------------- |
-| \_id        | ObjectId | Unique identifier             |
-| title       | String   | Title of the book             |
+|-------------|----------|-------------------------------|
+| _id         | ObjectId | Unique identifier             |
+| title       | String   | Book title                    |
 | author      | String   | Book author                   |
-| genre       | String   | Book genre/category           |
-| description | String   | Brief summary or description  |
-| createdAt   | Date     | Timestamp when book was added |
-| updatedAt   | Date     | Timestamp of last update      |
+| genre       | String   | Genre/category                |
+| description | String   | Short summary                 |
+| createdAt   | Date     | Added time                    |
+| updatedAt   | Date     | Last update time              |
 
----
-
-## 3. Review
+### 3. Review
 
 | Field     | Type     | Description                          |
-| --------- | -------- | ------------------------------------ |
-| \_id      | ObjectId | Unique identifier                    |
-| book      | ObjectId | Reference to the related `Book`      |
-| user      | ObjectId | Reference to the `User` who wrote it |
-| rating    | Number   | Rating score (1 to 5)                |
-| comment   | String   | Review comment                       |
-| createdAt | Date     | Timestamp when review was created    |
-| updatedAt | Date     | Timestamp of last update             |
+|-----------|----------|--------------------------------------|
+| _id       | ObjectId | Unique identifier                    |
+| book      | ObjectId | Reference to related `Book`          |
+| user      | ObjectId | Reference to `User`                  |
+| rating    | Number   | Score between 1 and 5                |
+| comment   | String   | Review content                      |
+| createdAt | Date     | Created time                        |
+| updatedAt | Date     | Last update time                    |
 
-**Constraints:**
+**Constraints:** One review per user per book (compound index), rating between 1–5
 
-- One review per user per book (unique compound index on `book + user`)
-- `rating` must be between 1 and 5
+### ER Diagram (Conceptual)
 
----
-
-## ER Diagram (Conceptual)
-
-```text
+```
 User (1) ────< Book (M)
                  └───< Review (M) >───┐
                                      └───> User (1)
 ```
+
+---
+
+## Design Decisions
+
+- Clean architecture with service/controller split
+- Centralized error handling using custom `AppError` class
+- Async functions wrapped with `catchAsync` utility
+- Consistent API response format using `responseFormatter`
+- Modular code with future scalability in mind
+
+---
