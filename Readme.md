@@ -105,6 +105,48 @@ npm run start
 
 ---
 
+## API Testing with Postman
+
+You can test this API easily using Postman by importing the provided Postman collection file.
+
+### Steps to Use the Postman Collection
+
+1. Open [Postman](https://www.postman.com/downloads/)
+2. Click **Import**
+3. Select the **File** tab and upload the collection file:
+   - If stored in the project root:  
+     `BookReviewAPI.postman_collection.json`
+   - If stored inside a subfolder (recommended):  
+     `postman/BookReviewAPI.postman_collection.json`
+4. The collection will appear in your Postman sidebar.
+5. Use the **`/login`** endpoint first to get a JWT token.
+6. For protected routes (like creating books or reviews), set the `Authorization` header in Postman:
+
+```
+Authorization: Bearer <your_token_here>
+```
+
+---
+
+### Postman Collection File Location
+
+If you organize your project like this:
+
+```
+/book-review-api/
+├── controllers/
+├── routes/
+├── postman/
+│   └── BookReviewAPI.postman_collection.json
+├── README.md
+```
+
+Then in your README you can link the file like this:
+
+```markdown
+📂 [Click here to download the Postman Collection](./postman/BookReviewAPI.postman_collection.json)
+```
+
 ## Database Schema
 
 ### 1. User

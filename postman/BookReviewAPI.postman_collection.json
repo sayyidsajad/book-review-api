@@ -1,0 +1,192 @@
+{
+  "info": {
+    "name": "Book Review API",
+    "_postman_id": "book-review-api-id",
+    "description": "Postman Collection for testing the Book Review API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"sajad\",\n  \"email\": \"sajad@example.com\",\n  \"password\": \"strongpassword\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/signup",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["signup"]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"sajad@example.com\",\n  \"password\": \"strongpassword\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/login",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["login"]
+        }
+      }
+    },
+    {
+      "name": "Create Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <your_token_here>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Atomic Habits\",\n  \"author\": \"James Clear\",\n  \"genre\": \"Self-help\",\n  \"description\": \"A book about building good habits and breaking bad ones.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "Get All Books",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "Search Books",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/search?query=atomic",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "search"],
+          "query": [
+            {
+              "key": "query",
+              "value": "atomic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Book By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/books/<book_id>",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "<book_id>"]
+        }
+      }
+    },
+    {
+      "name": "Add Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <your_token_here>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Fantastic and actionable!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books/<book_id>/reviews",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "<book_id>", "reviews"]
+        }
+      }
+    },
+    {
+      "name": "Update Review",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <your_token_here>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Really helpful!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/reviews/<review_id>",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["reviews", "<review_id>"]
+        }
+      }
+    },
+    {
+      "name": "Delete Review",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <your_token_here>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/reviews/<review_id>",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["reviews", "<review_id>"]
+        }
+      }
+    }
+  ]
+}
