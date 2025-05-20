@@ -7,13 +7,11 @@ A RESTful API for managing users, books, and reviews. Built with Node.js, Expres
 ## Features
 
 - User signup/login with JWT authentication
-- Add, view, search, and filter books
+- Add, view, search and filter books
 - Submit one review per user per book
 - Secure routes and input validation
 - Centralized error handling and consistent API response format
 - Modular folder structure with service/controller separation
-- Helmet and rate limiting for security
-
 ---
 
 ## Tech Stack
@@ -21,7 +19,6 @@ A RESTful API for managing users, books, and reviews. Built with Node.js, Expres
 - Node.js with Express.js
 - MongoDB + Mongoose
 - JWT for Authentication
-- Helmet + Rate Limiting for security
 - dotenv for environment config
 
 ---
