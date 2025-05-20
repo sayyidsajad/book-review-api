@@ -47,6 +47,7 @@ PORT=3000
 MONGODB_URI=mongodb://localhost:27017/book_review_db
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
+```
 
 ### 4. Run the app
 
